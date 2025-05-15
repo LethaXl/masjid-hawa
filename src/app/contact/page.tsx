@@ -71,7 +71,7 @@ export default function ContactPage() {
                 <div>
                   <button
                     type="submit"
-                    className="bg-green-600 hover:bg-green-700 text-white font-medium py-2 px-6 rounded-md transition duration-300"
+                    className="bg-gradient-to-r from-green-600 to-green-800 hover:from-green-700 hover:to-green-900 text-white font-medium py-2 px-6 rounded-md transition duration-300 shadow-md"
                   >
                     Submit Message
                   </button>
@@ -143,16 +143,20 @@ export default function ContactPage() {
                 </div>
               </div>
 
-              <div className="mt-8 bg-white rounded-lg border border-gray-200 overflow-hidden h-64">
-                <iframe 
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2881.219614985985!2d-79.23399378799588!3d43.77642397101398!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89d4ce06a27e9e0b%3A0x3b96a26cbaf97f3d!2s2829%20Eglinton%20Ave%20E%2C%20Scarborough%2C%20ON%20M1J%202E1%2C%20Canada!5e0!3m2!1sen!2sus!4v1657741234567!5m2!1sen!2sus" 
-                  width="100%" 
-                  height="100%" 
-                  style={{ border: 0 }} 
-                  allowFullScreen={true} 
-                  loading="lazy" 
-                  referrerPolicy="no-referrer-when-downgrade"
-                ></iframe>
+              <div className="mt-8 bg-white rounded-lg border border-gray-200 overflow-hidden h-72">
+                <div className="h-full w-full">
+                  <iframe 
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2881.219485058121!2d-79.23399499999999!3d43.7764247!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89d4ce06a27e9e0b%3A0x3b96a26cbaf97f3d!2s2829%20Eglinton%20Ave%20E%2C%20Scarborough%2C%20ON%20M1J%202E1%2C%20Canada!5e0!3m2!1sen!2sca!4v1699889801646!5m2!1sen!2sca" 
+                    width="100%" 
+                    height="100%" 
+                    style={{ border: 0 }} 
+                    allowFullScreen={true} 
+                    loading="lazy" 
+                    referrerPolicy="no-referrer-when-downgrade"
+                    title="Masjid Hawa Location Map"
+                    aria-label="Google Maps showing Masjid Hawa location at 2829 Eglinton Ave E, Scarborough"
+                  ></iframe>
+                </div>
               </div>
             </div>
           </div>

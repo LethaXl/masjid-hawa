@@ -30,14 +30,25 @@ export default function Home() {
             <a
               href="#prayer-times"
               onClick={(e) => scrollToSection(e, 'prayer-times')}
-              className="bg-orange-700 hover:bg-orange-800 text-white font-medium py-3 px-6 rounded-md transition duration-300 text-center"
+              className="bg-orange-600 hover:bg-orange-700 text-white font-medium py-3 px-6 rounded-md transition-all duration-300 text-center"
+              style={{ 
+                backgroundColor: '#e84d15'
+              }}
+              onMouseOver={(e) => e.currentTarget.style.transform = 'translateY(-2px)'}
+              onMouseOut={(e) => e.currentTarget.style.transform = 'translateY(0)'}
+              onMouseDown={(e) => e.currentTarget.style.transform = 'scale(0.95)'}
+              onMouseUp={(e) => e.currentTarget.style.transform = 'translateY(-2px)'}
             >
               Prayer Times
-          </a>
-          <a
+            </a>
+            <a
               href="#donate"
               onClick={(e) => scrollToSection(e, 'donate')}
-              className="bg-white hover:bg-orange-100 text-orange-700 font-medium py-3 px-6 rounded-md transition duration-300 text-center"
+              className="bg-white hover:bg-orange-50 text-orange-600 font-medium py-3 px-6 rounded-md transition-all duration-300 text-center border border-orange-200"
+              onMouseOver={(e) => e.currentTarget.style.transform = 'translateY(-2px)'}
+              onMouseOut={(e) => e.currentTarget.style.transform = 'translateY(0)'}
+              onMouseDown={(e) => e.currentTarget.style.transform = 'scale(0.95)'}
+              onMouseUp={(e) => e.currentTarget.style.transform = 'translateY(-2px)'}
             >
               Donate Now
             </a>
@@ -216,8 +227,19 @@ export default function Home() {
             
             <div className="text-center mt-8">
               <button
-                className="bg-orange-700 hover:bg-orange-800 text-white font-medium py-3 px-8 rounded-md transition duration-300"
+                className="bg-orange-600 hover:bg-orange-700 text-white font-medium py-3 px-12 rounded-md transition-all duration-300"
                 onClick={() => window.open('https://app.irm.io/masjidhawa.com', '_blank')}
+                style={{ 
+                  background: 'linear-gradient(145deg, #ff5722, #e84d15)',
+                  boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08)',
+                  fontSize: '1.5rem',
+                  textShadow: '0 1px 2px rgba(0, 0, 0, 0.1)',
+                  border: '1px solid rgba(255, 255, 255, 0.1)'
+                }}
+                onMouseOver={(e) => e.currentTarget.style.transform = 'translateY(-2px)'}
+                onMouseOut={(e) => e.currentTarget.style.transform = 'translateY(0)'}
+                onMouseDown={(e) => e.currentTarget.style.transform = 'scale(0.95)'}
+                onMouseUp={(e) => e.currentTarget.style.transform = 'translateY(-2px)'}
               >
                 Donate Now
               </button>
@@ -255,17 +277,66 @@ export default function Home() {
                   </div>
                 </div>
                 
-                <div className="border border-gray-200 overflow-hidden h-64 flex items-center justify-center bg-white rounded-lg">
-                  <p className="text-xl font-medium text-orange-700">Map of 2829 Eglinton Ave E, Scarborough</p>
+                <div className="border border-gray-200 overflow-hidden h-72 flex items-center justify-center bg-white rounded-lg">
+                  <div className="h-full w-full">
+                    <iframe 
+                      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d11524.87794023248!2d-79.24399499999999!3d43.7764247!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89d4ce06a27e9e0b%3A0x3b96a26cbaf97f3d!2s2829%20Eglinton%20Ave%20E%2C%20Scarborough%2C%20ON%20M1J%202E1%2C%20Canada!5e0!3m2!1sen!2sca!4v1699889801646!5m2!1sen!2sca" 
+                      width="100%" 
+                      height="100%" 
+                      style={{ border: 0 }} 
+                      allowFullScreen={true} 
+                      loading="lazy" 
+                      referrerPolicy="no-referrer-when-downgrade"
+                      title="Masjid Hawa Location Map"
+                      aria-label="Google Maps showing Masjid Hawa location at 2829 Eglinton Ave E, Scarborough"
+                    ></iframe>
+                  </div>
                 </div>
                 
                 <div className="mt-6 text-center">
-                  <h4 className="text-lg font-medium text-orange-700 mb-2">Directions</h4>
-                  <p className="text-gray-700">
-                    Located on Eglinton Avenue East near Markham Road. <br />
-                    Public transit available with nearby bus routes. <br />
-                    Convenient parking available on premises.
-                  </p>
+                  <div className="mb-4">
+                    <a
+                      href="https://www.google.com/maps/dir//2829+Eglinton+Ave+E,+Scarborough,+ON+M1J+2E1,+Canada"
+                      target="_blank" 
+                      rel="noreferrer"
+                      className="inline-flex items-center bg-orange-600 hover:bg-orange-700 text-white font-medium py-2 px-6 rounded-md transition-all duration-300"
+                      style={{ 
+                        backgroundColor: '#e84d15'
+                      }}
+                      onMouseOver={(e) => e.currentTarget.style.transform = 'translateY(-2px)'}
+                      onMouseOut={(e) => e.currentTarget.style.transform = 'translateY(0)'}
+                      onMouseDown={(e) => e.currentTarget.style.transform = 'scale(0.95)'}
+                      onMouseUp={(e) => e.currentTarget.style.transform = 'translateY(-2px)'}
+                    >
+                      <svg className="w-5 h-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                      </svg>
+                      Get Directions
+                    </a>
+                  </div>
+                  <div className="text-gray-700">
+                    <p className="mb-2">
+                      <span className="font-medium">Nearby TTC Routes:</span>
+                    </p>
+                    <div className="flex flex-wrap gap-2 justify-center mb-2">
+                      <div className="bg-red-600 text-white font-bold py-1 px-3 rounded">
+                        16
+                      </div>
+                      <div className="bg-red-600 text-white font-bold py-1 px-3 rounded">
+                        116
+                      </div>
+                      <div className="bg-red-600 text-white font-bold py-1 px-3 rounded">
+                        86
+                      </div>
+                      <div className="bg-green-600 text-white font-bold py-1 px-3 rounded">
+                        905
+                      </div>
+                    </div>
+                    <p className="mb-2">
+                      <span className="font-medium">Parking:</span> Free parking available on premises.
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>
@@ -337,7 +408,7 @@ export default function Home() {
               </div>
             </div>
           </div>
-    </div>
+        </div>
       </section>
     </MainLayout>
   );
