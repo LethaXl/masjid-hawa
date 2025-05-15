@@ -76,7 +76,7 @@ const PrayerTimes = () => {
   if (loading) {
     return (
       <div className="flex justify-center items-center min-h-48">
-        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-green-600"></div>
+        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-orange-600"></div>
       </div>
     );
   }
@@ -90,8 +90,8 @@ const PrayerTimes = () => {
   }
 
   return (
-    <div className="bg-white rounded-lg shadow-md overflow-hidden">
-      <div className="bg-green-700 text-white p-4">
+    <div className="bg-white rounded-lg overflow-hidden border border-gray-200">
+      <div className="bg-orange-700 text-white p-4">
         <h2 className="text-xl font-bold text-center">Daily Prayer Times</h2>
         {prayerData && (
           <div className="text-center mt-2">
@@ -105,33 +105,43 @@ const PrayerTimes = () => {
 
       {prayerData && (
         <div className="p-4">
-          <div className="grid grid-cols-2 gap-4">
-            <div className="bg-green-50 p-3 rounded">
-              <h3 className="font-semibold text-green-800">Fajr</h3>
-              <p className="text-lg font-bold">{formatTime(prayerData.timings.Fajr)}</p>
-            </div>
-            <div className="bg-yellow-50 p-3 rounded">
-              <h3 className="font-semibold text-yellow-700">Sunrise</h3>
-              <p className="text-lg font-bold">{formatTime(prayerData.timings.Sunrise)}</p>
-            </div>
-            <div className="bg-blue-50 p-3 rounded">
-              <h3 className="font-semibold text-blue-800">Dhuhr</h3>
-              <p className="text-lg font-bold">{formatTime(prayerData.timings.Dhuhr)}</p>
-            </div>
-            <div className="bg-orange-50 p-3 rounded">
-              <h3 className="font-semibold text-orange-700">Asr</h3>
-              <p className="text-lg font-bold">{formatTime(prayerData.timings.Asr)}</p>
-            </div>
-            <div className="bg-red-50 p-3 rounded">
-              <h3 className="font-semibold text-red-700">Maghrib</h3>
-              <p className="text-lg font-bold">{formatTime(prayerData.timings.Maghrib)}</p>
-            </div>
-            <div className="bg-indigo-50 p-3 rounded">
-              <h3 className="font-semibold text-indigo-700">Isha</h3>
-              <p className="text-lg font-bold">{formatTime(prayerData.timings.Isha)}</p>
-            </div>
+          <div className="overflow-hidden rounded-lg">
+            <table className="min-w-full border-collapse">
+              <thead>
+                <tr>
+                  <th className="bg-orange-600 text-white py-3 px-4 text-left font-semibold">Prayer</th>
+                  <th className="bg-orange-600 text-white py-3 px-4 text-right font-semibold">Time</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr className="border-b border-gray-200">
+                  <td className="py-3 px-4 bg-orange-50 font-medium text-orange-800">Fajr</td>
+                  <td className="py-3 px-4 bg-orange-50 text-right text-orange-900 font-bold">{formatTime(prayerData.timings.Fajr)}</td>
+                </tr>
+                <tr className="border-b border-gray-200">
+                  <td className="py-3 px-4 bg-amber-50 font-medium text-amber-800">Sunrise</td>
+                  <td className="py-3 px-4 bg-amber-50 text-right text-amber-900 font-bold">{formatTime(prayerData.timings.Sunrise)}</td>
+                </tr>
+                <tr className="border-b border-gray-200">
+                  <td className="py-3 px-4 bg-orange-50 font-medium text-orange-800">Dhuhr</td>
+                  <td className="py-3 px-4 bg-orange-50 text-right text-orange-900 font-bold">{formatTime(prayerData.timings.Dhuhr)}</td>
+                </tr>
+                <tr className="border-b border-gray-200">
+                  <td className="py-3 px-4 bg-amber-50 font-medium text-amber-800">Asr</td>
+                  <td className="py-3 px-4 bg-amber-50 text-right text-amber-900 font-bold">{formatTime(prayerData.timings.Asr)}</td>
+                </tr>
+                <tr className="border-b border-gray-200">
+                  <td className="py-3 px-4 bg-orange-50 font-medium text-orange-800">Maghrib</td>
+                  <td className="py-3 px-4 bg-orange-50 text-right text-orange-900 font-bold">{formatTime(prayerData.timings.Maghrib)}</td>
+                </tr>
+                <tr>
+                  <td className="py-3 px-4 bg-amber-50 font-medium text-amber-800">Isha</td>
+                  <td className="py-3 px-4 bg-amber-50 text-right text-amber-900 font-bold">{formatTime(prayerData.timings.Isha)}</td>
+                </tr>
+              </tbody>
+            </table>
           </div>
-
+          
           <div className="mt-4 text-center text-sm text-gray-600">
             <p>Prayer times are calculated based on ISNA method for Scarborough, Canada.</p>
           </div>
