@@ -59,14 +59,8 @@ const Header = () => {
           <a href="#home" onClick={(e) => scrollToSection(e, 'home')} className="hover:text-orange-200">
             Home
           </a>
-          <a href="#prayer-times" onClick={(e) => scrollToSection(e, 'prayer-times')} className="hover:text-orange-200">
-            Prayer Times
-          </a>
           <a href="#about" onClick={(e) => scrollToSection(e, 'about')} className="hover:text-orange-200">
             About
-          </a>
-          <a href="#services" onClick={(e) => scrollToSection(e, 'services')} className="hover:text-orange-200">
-            Services
           </a>
           <a href="#donate" onClick={(e) => scrollToSection(e, 'donate')} className="hover:text-orange-200">
             Donate
@@ -92,25 +86,11 @@ const Header = () => {
               Home
             </a>
             <a
-              href="#prayer-times"
-              onClick={(e) => scrollToSection(e, 'prayer-times')}
-              className="block py-2 hover:text-orange-200"
-            >
-              Prayer Times
-            </a>
-            <a
               href="#about"
               onClick={(e) => scrollToSection(e, 'about')}
               className="block py-2 hover:text-orange-200"
             >
               About
-            </a>
-            <a
-              href="#services"
-              onClick={(e) => scrollToSection(e, 'services')}
-              className="block py-2 hover:text-orange-200"
-            >
-              Services
             </a>
             <a
               href="#donate"

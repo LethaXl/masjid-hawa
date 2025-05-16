@@ -2,6 +2,20 @@
 
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import { 
+  FaSun, 
+  FaMoon, 
+  FaRegSun, 
+  FaCloudSun, 
+  FaMosque, 
+  FaRegMoon,
+  FaStar 
+} from 'react-icons/fa';
+import { FiSunrise, FiSunset } from 'react-icons/fi';
+import { WiMoonset, WiMoonrise } from 'react-icons/wi';
+import { FaPeopleRoof } from 'react-icons/fa6';
+import { MdOutlineWbSunny } from 'react-icons/md';
+import { CiCloudSun } from 'react-icons/ci';
 
 type PrayerData = {
   timings: {
@@ -25,6 +39,8 @@ type PrayerData = {
   };
 };
 
+type PrayerName = 'Fajr' | 'Sunrise' | 'Dhuhr' | 'Asr' | 'Maghrib' | 'Isha';
+
 const PrayerTimes = () => {
   const [prayerData, setPrayerData] = useState<PrayerData | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
@@ -37,7 +53,7 @@ const PrayerTimes = () => {
   useEffect(() => {
     const fetchPrayerTimes = async () => {
       try {
-        const response = await axios.get('http://api.aladhan.com/v1/timings', {
+        const response = await axios.get('https://api.aladhan.com/v1/timings', {
           params: {
             latitude,
             longitude,
@@ -73,6 +89,79 @@ const PrayerTimes = () => {
     return `${hour12}:${minutes} ${period}`;
   };
 
+  // Function to round a time to the nearest 5 or 0 minute
+  const roundToNearestFiveOrZero = (time: string): string => {
+    if (!time) return '';
+    
+    const [hours, minutesPart] = time.split(':');
+    const [minutes, period] = minutesPart.split(' ');
+    const mins = parseInt(minutes, 10);
+    
+    // Round to nearest 5
+    let roundedMins = Math.round(mins / 5) * 5;
+    
+    // If rounded to 60, increment hour and set mins to 0
+    let hour = parseInt(hours, 10);
+    if (roundedMins === 60) {
+      hour = (hour + 1) % 12 || 12;
+      roundedMins = 0;
+    }
+    
+    return `${hour}:${roundedMins.toString().padStart(2, '0')} ${period}`;
+  };
+
+  // Get Iqamah time for each prayer
+  const getIqamahTime = (prayerName: PrayerName, adhanTime: string): string => {
+    if (!adhanTime || prayerName === 'Sunrise') return '-';
+    
+    // Extract hours and minutes from the Adhan time
+    const [hourMinute, period] = adhanTime.split(' ');
+    const [hour, minute] = hourMinute.split(':');
+    const hourInt = parseInt(hour, 10);
+    const minuteInt = parseInt(minute, 10);
+    
+    // Create a base Date object
+    const adhanDate = new Date();
+    
+    // Adjust hours for PM
+    const hour24 = period === 'PM' && hourInt !== 12 ? hourInt + 12 : (period === 'AM' && hourInt === 12 ? 0 : hourInt);
+    adhanDate.setHours(hour24);
+    adhanDate.setMinutes(minuteInt);
+    
+    // Add different offsets based on prayer
+    switch (prayerName) {
+      case 'Fajr':
+        adhanDate.setMinutes(adhanDate.getMinutes() + 20);
+        break;
+      case 'Dhuhr':
+        adhanDate.setMinutes(adhanDate.getMinutes() + 15);
+        break;
+      case 'Asr':
+        adhanDate.setMinutes(adhanDate.getMinutes() + 15);
+        break;
+      case 'Maghrib':
+        adhanDate.setMinutes(adhanDate.getMinutes() + 10);
+        break;
+      case 'Isha':
+        adhanDate.setMinutes(adhanDate.getMinutes() + 15);
+        break;
+    }
+    
+    // Format to 12-hour time
+    const iqamahHours = adhanDate.getHours();
+    const iqamahMinutes = adhanDate.getMinutes();
+    const newPeriod = iqamahHours >= 12 ? 'PM' : 'AM';
+    const hour12 = iqamahHours % 12 || 12;
+    
+    // Round to nearest 5 or 0
+    const roundedMinutes = Math.round(iqamahMinutes / 5) * 5;
+    const finalMinutes = roundedMinutes === 60 ? '00' : roundedMinutes.toString().padStart(2, '0');
+    const finalHour = roundedMinutes === 60 ? (hour12 + 1) % 12 || 12 : hour12;
+    const finalPeriod = roundedMinutes === 60 && hour12 === 11 ? (newPeriod === 'AM' ? 'PM' : 'AM') : newPeriod;
+    
+    return `${finalHour}:${finalMinutes} ${finalPeriod}`;
+  };
+
   if (loading) {
     return (
       <div className="flex justify-center items-center min-h-48">
@@ -89,63 +178,157 @@ const PrayerTimes = () => {
     );
   }
 
+  // Function to determine if today is Friday
+  const isFriday = () => {
+    const today = new Date();
+    return today.getDay() === 5; // 5 is Friday
+  };
+
   return (
-    <div className="bg-white rounded-lg overflow-hidden border border-gray-200">
-      <div className="bg-orange-700 text-white p-4">
-        <h2 className="text-xl font-bold text-center">Daily Prayer Times</h2>
+    <div className="overflow-hidden rounded-lg border border-gray-800">
+      <div className="bg-orange-700 text-white p-4 text-center border-b border-gray-800">
         {prayerData && (
-          <div className="text-center mt-2">
-            <p className="text-sm">{prayerData.date.readable}</p>
+          <>
+            <p className="text-md">{prayerData.date.readable}</p>
             <p className="text-sm">
               {prayerData.date.hijri.day} {prayerData.date.hijri.month.en} {prayerData.date.hijri.year} Hijri
             </p>
-          </div>
+          </>
         )}
       </div>
 
       {prayerData && (
-        <div className="p-4">
-          <div className="overflow-hidden rounded-lg">
-            <table className="min-w-full border-collapse">
+        <>
+          <div className="overflow-hidden">
+            <table className="w-full border-collapse">
               <thead>
-                <tr>
-                  <th className="bg-orange-600 text-white py-3 px-4 text-left font-semibold">Prayer</th>
-                  <th className="bg-orange-600 text-white py-3 px-4 text-right font-semibold">Time</th>
+                <tr className="border-b border-gray-800">
+                  <th className="bg-orange-700 text-white py-3 text-center font-semibold border-r border-gray-800">Prayer</th>
+                  <th className="bg-orange-700 text-white py-3 text-center font-semibold border-r border-gray-800">Adhan</th>
+                  <th className="bg-orange-700 text-white py-3 text-center font-semibold">Iqamah</th>
                 </tr>
               </thead>
               <tbody>
-                <tr className="border-b border-gray-200">
-                  <td className="py-3 px-4 bg-orange-50 font-medium text-orange-800">Fajr</td>
-                  <td className="py-3 px-4 bg-orange-50 text-right text-orange-900 font-bold">{formatTime(prayerData.timings.Fajr)}</td>
+                <tr className="even:bg-orange-50 odd:bg-white">
+                  <td className="py-3 px-2 text-orange-900 border-r border-gray-200">
+                    <div className="flex justify-center">
+                      <div className="w-32 flex">
+                        <div className="w-8 flex justify-end">
+                          <WiMoonset className="text-orange-700 text-xl" />
+                        </div>
+                        <span className="ml-3 font-medium">Fajr</span>
+                      </div>
+                    </div>
+                  </td>
+                  <td className="py-3 px-2 text-center text-orange-900 font-bold border-r border-gray-200">{formatTime(prayerData.timings.Fajr)}</td>
+                  <td className="py-3 px-2 text-center text-orange-900 font-bold">{getIqamahTime('Fajr', formatTime(prayerData.timings.Fajr))}</td>
                 </tr>
-                <tr className="border-b border-gray-200">
-                  <td className="py-3 px-4 bg-amber-50 font-medium text-amber-800">Sunrise</td>
-                  <td className="py-3 px-4 bg-amber-50 text-right text-amber-900 font-bold">{formatTime(prayerData.timings.Sunrise)}</td>
+                <tr className="even:bg-orange-50 odd:bg-white">
+                  <td className="py-3 px-2 text-orange-900 border-r border-gray-200">
+                    <div className="flex justify-center">
+                      <div className="w-32 flex">
+                        <div className="w-8 flex justify-end">
+                          <FiSunrise className="text-orange-700" />
+                        </div>
+                        <span className="ml-3 font-medium">Sunrise</span>
+                      </div>
+                    </div>
+                  </td>
+                  <td className="py-3 px-2 text-center text-orange-900 font-bold" colSpan={2}>{formatTime(prayerData.timings.Sunrise)}</td>
                 </tr>
-                <tr className="border-b border-gray-200">
-                  <td className="py-3 px-4 bg-orange-50 font-medium text-orange-800">Dhuhr</td>
-                  <td className="py-3 px-4 bg-orange-50 text-right text-orange-900 font-bold">{formatTime(prayerData.timings.Dhuhr)}</td>
+                <tr className="even:bg-orange-50 odd:bg-white">
+                  <td className="py-3 px-2 text-orange-900 border-r border-gray-200">
+                    <div className="flex justify-center">
+                      <div className="w-32 flex">
+                        <div className="w-8 flex justify-end">
+                          <MdOutlineWbSunny className="text-orange-700" />
+                        </div>
+                        <span className="ml-3 font-medium">Dhuhr</span>
+                      </div>
+                    </div>
+                  </td>
+                  <td className="py-3 px-2 text-center text-orange-900 font-bold border-r border-gray-200">{formatTime(prayerData.timings.Dhuhr)}</td>
+                  <td className="py-3 px-2 text-center text-orange-900 font-bold">{getIqamahTime('Dhuhr', formatTime(prayerData.timings.Dhuhr))}</td>
                 </tr>
-                <tr className="border-b border-gray-200">
-                  <td className="py-3 px-4 bg-amber-50 font-medium text-amber-800">Asr</td>
-                  <td className="py-3 px-4 bg-amber-50 text-right text-amber-900 font-bold">{formatTime(prayerData.timings.Asr)}</td>
+                {/* Add Jumu'ah rows that show only on Friday */}
+                <tr className="even:bg-orange-50 odd:bg-white">
+                  <td className="py-3 px-2 text-orange-900 border-r border-gray-200">
+                    <div className="flex justify-center">
+                      <div className="w-32 flex">
+                        <div className="w-8 flex justify-end">
+                          <FaPeopleRoof className="text-orange-700" />
+                        </div>
+                        <span className="ml-3 font-medium">Jumu'ah 1</span>
+                      </div>
+                    </div>
+                  </td>
+                  <td className="py-3 px-2 text-center text-orange-900 font-bold border-r border-gray-200">1:15 PM</td>
+                  <td className="py-3 px-2 text-center text-orange-900 font-bold">1:30 PM</td>
                 </tr>
-                <tr className="border-b border-gray-200">
-                  <td className="py-3 px-4 bg-orange-50 font-medium text-orange-800">Maghrib</td>
-                  <td className="py-3 px-4 bg-orange-50 text-right text-orange-900 font-bold">{formatTime(prayerData.timings.Maghrib)}</td>
+                <tr className="even:bg-orange-50 odd:bg-white">
+                  <td className="py-3 px-2 text-orange-900 border-r border-gray-200">
+                    <div className="flex justify-center">
+                      <div className="w-32 flex">
+                        <div className="w-8 flex justify-end">
+                          <FaPeopleRoof className="text-orange-700" />
+                        </div>
+                        <span className="ml-3 font-medium">Jumu'ah 2</span>
+                      </div>
+                    </div>
+                  </td>
+                  <td className="py-3 px-2 text-center text-orange-900 font-bold border-r border-gray-200">1:15 PM</td>
+                  <td className="py-3 px-2 text-center text-orange-900 font-bold">2:30 PM</td>
                 </tr>
-                <tr>
-                  <td className="py-3 px-4 bg-amber-50 font-medium text-amber-800">Isha</td>
-                  <td className="py-3 px-4 bg-amber-50 text-right text-amber-900 font-bold">{formatTime(prayerData.timings.Isha)}</td>
+                <tr className="even:bg-orange-50 odd:bg-white">
+                  <td className="py-3 px-2 text-orange-900 border-r border-gray-200">
+                    <div className="flex justify-center">
+                      <div className="w-32 flex">
+                        <div className="w-8 flex justify-end">
+                          <CiCloudSun className="text-orange-700 text-xl" />
+                        </div>
+                        <span className="ml-3 font-medium">Asr</span>
+                      </div>
+                    </div>
+                  </td>
+                  <td className="py-3 px-2 text-center text-orange-900 font-bold border-r border-gray-200">{formatTime(prayerData.timings.Asr)}</td>
+                  <td className="py-3 px-2 text-center text-orange-900 font-bold">{getIqamahTime('Asr', formatTime(prayerData.timings.Asr))}</td>
+                </tr>
+                <tr className="even:bg-orange-50 odd:bg-white">
+                  <td className="py-3 px-2 text-orange-900 border-r border-gray-200">
+                    <div className="flex justify-center">
+                      <div className="w-32 flex">
+                        <div className="w-8 flex justify-end">
+                          <FiSunset className="text-orange-700" />
+                        </div>
+                        <span className="ml-3 font-medium">Maghrib</span>
+                      </div>
+                    </div>
+                  </td>
+                  <td className="py-3 px-2 text-center text-orange-900 font-bold border-r border-gray-200">{formatTime(prayerData.timings.Maghrib)}</td>
+                  <td className="py-3 px-2 text-center text-orange-900 font-bold">{getIqamahTime('Maghrib', formatTime(prayerData.timings.Maghrib))}</td>
+                </tr>
+                <tr className="even:bg-orange-50 odd:bg-white">
+                  <td className="py-3 px-2 text-orange-900 border-r border-gray-200">
+                    <div className="flex justify-center">
+                      <div className="w-32 flex">
+                        <div className="w-8 flex justify-end">
+                          <WiMoonrise className="text-orange-700 text-xl" />
+                        </div>
+                        <span className="ml-3 font-medium">Isha</span>
+                      </div>
+                    </div>
+                  </td>
+                  <td className="py-3 px-2 text-center text-orange-900 font-bold border-r border-gray-200">{formatTime(prayerData.timings.Isha)}</td>
+                  <td className="py-3 px-2 text-center text-orange-900 font-bold">{getIqamahTime('Isha', formatTime(prayerData.timings.Isha))}</td>
                 </tr>
               </tbody>
             </table>
           </div>
           
-          <div className="mt-4 text-center text-sm text-gray-600">
-            <p>Prayer times are calculated based on ISNA method for Scarborough, Canada.</p>
+          <div className="p-3 text-center text-sm text-gray-600 bg-gray-50 border-t border-gray-800">
+            <p>Iqamah times shown here are approximate.</p>
           </div>
-        </div>
+        </>
       )}
     </div>
   );

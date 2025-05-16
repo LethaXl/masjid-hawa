@@ -19,8 +19,12 @@
   }
 }
 
-html {
+html, body {
   scroll-behavior: smooth;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
 }
 
 body {
@@ -28,4 +32,43 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
   padding-top: 60px; /* Add space for fixed header */
+}
+
+/* Make sure containers have appropriate widths */
+.container {
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 1400px;
+}
+
+/* Ensure header spans full width */
+header {
+  width: 100% !important;
+  left: 0;
+  right: 0;
+}
+
+/* Background for sections */
+section {
+  width: 100%;
+}
+
+/* Main content sizing */
+main {
+  width: 100%;
+  overflow-x: hidden;
+}
+
+/* Account for mobile views */
+@media (max-width: 768px) {
+  body {
+    width: 100%;
+  }
+}
+
+/* Adjust padding and margins for better spacing */
+section {
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
 }
