@@ -1,15 +1,25 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Lateef, Amiri, Libre_Baskerville } from "next/font/google";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
+const displayFont = Lateef({
+  variable: "--font-display",
+  subsets: ["latin", "arabic"],
+  weight: ["400", "700"],
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const bodyFont = Libre_Baskerville({
+  variable: "--font-body",
   subsets: ["latin"],
+  weight: ["400", "700"],
+  style: ["normal", "italic"],
+});
+
+const accentFont = Amiri({
+  variable: "--font-accent",
+  subsets: ["latin", "arabic"],
+  weight: ["400", "700"],
+  style: ["normal", "italic"],
 });
 
 export const metadata: Metadata = {
@@ -26,7 +36,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${displayFont.variable} ${bodyFont.variable} ${accentFont.variable} antialiased`}
         suppressHydrationWarning={true}
       >
         {children}

@@ -7,6 +7,11 @@ module.exports = {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        display: ['var(--font-display)', 'serif'],
+        body: ['var(--font-body)', 'Georgia', 'serif'],
+        accent: ['var(--font-accent)', 'serif'],
+      },
       colors: {
         coral: {
           50: '#fff5f1',

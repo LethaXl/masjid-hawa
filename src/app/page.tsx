@@ -183,12 +183,12 @@ export default function Home() {
             
             <div className="text-center mt-8">
               <button
-                className="bg-orange-600 hover:bg-orange-700 text-white font-medium py-3 px-12 rounded-md transition-all duration-300"
+                className="bg-orange-600 hover:bg-orange-700 text-white font-medium py-2 px-8 rounded-md transition-all duration-300"
                 onClick={() => window.open('https://app.irm.io/masjidhawa.com', '_blank')}
                 style={{ 
                   background: 'linear-gradient(145deg, #ff5722, #e84d15)',
                   boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08)',
-                  fontSize: '1.5rem',
+                  fontSize: '1.25rem',
                   textShadow: '0 1px 2px rgba(0, 0, 0, 0.1)',
                   border: '1px solid rgba(255, 255, 255, 0.1)'
                 }}
