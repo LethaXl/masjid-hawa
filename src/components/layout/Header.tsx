@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import { useState } from 'react';
+import Image from 'next/image';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -20,8 +21,20 @@ const Header = () => {
       <div className="container mx-auto px-4 py-3 flex justify-between items-center">
         <a href="#home" 
            onClick={(e) => scrollToSection(e, 'home')}
-           className="flex items-center">
-          <span className="text-xl font-bold">Masjid Hawa</span>
+           className="flex items-center gap-2">
+          <div className="flex items-center">
+            <Image 
+              src="/images/favicon1.png" 
+              alt="Masjid Hawa Logo" 
+              width={40} 
+              height={40} 
+              className="rounded-full shadow border-2 border-orange-500 bg-white"
+              priority
+            />
+          </div>
+          <span className="text-2xl md:text-3xl font-extrabold tracking-tight font-display text-orange-100 drop-shadow-sm" style={{lineHeight: '1.1'}}>
+            Masjid Hawa
+          </span>
         </a>
 
         {/* Mobile menu button */}

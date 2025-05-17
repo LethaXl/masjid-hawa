@@ -17,42 +17,25 @@ export default function Home() {
   return (
     <MainLayout>
       {/* Hero Section */}
-      <section id="home" className="relative bg-orange-900 text-white pt-20 w-full">
-        <div className="absolute inset-0 z-0 bg-gradient-to-b from-orange-800 to-orange-900 opacity-95"></div>
-        <div className="relative z-10 container mx-auto px-4 py-24 flex flex-col items-center">
-          <h1 className="text-4xl md:text-5xl font-bold text-center mb-6 text-white">
+      <section id="home" className="relative bg-gradient-to-b from-orange-300 via-orange-200 to-orange-100 text-orange-900 pt-10 w-full border-b border-orange-200">
+        <div className="relative z-10 container mx-auto px-4 py-12 flex flex-col items-center">
+          {/* Mosque Icon */}
+          <div className="mb-4 flex justify-center">
+            <Image 
+              src="/images/favicon1.png" 
+              alt="Masjid Hawa Logo" 
+              width={56} 
+              height={56} 
+              className="rounded-full shadow border-2 border-orange-500"
+              priority
+            />
+          </div>
+          <h1 className="text-4xl md:text-6xl font-extrabold text-center mb-6 tracking-tight text-orange-700">
             Masjid Hawa
           </h1>
-          <p className="text-xl md:text-2xl text-center mb-8 max-w-3xl text-gray-200">
-            A new Masjid in Scarborough with ample parking, serving the Muslim community
+          <p className="text-lg md:text-xl text-center mb-6 max-w-xl text-orange-700 font-medium">
+            Welcoming you to a new masjid in Scarborough, dedicated to prayer, unity, and growth.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4">
-            <a
-              href="#prayer-times"
-              onClick={(e) => scrollToSection(e, 'prayer-times')}
-              className="bg-orange-600 hover:bg-orange-700 text-white font-medium py-3 px-6 rounded-md transition-all duration-300 text-center"
-              style={{ 
-                backgroundColor: '#e84d15'
-              }}
-              onMouseOver={(e) => e.currentTarget.style.transform = 'translateY(-2px)'}
-              onMouseOut={(e) => e.currentTarget.style.transform = 'translateY(0)'}
-              onMouseDown={(e) => e.currentTarget.style.transform = 'scale(0.95)'}
-              onMouseUp={(e) => e.currentTarget.style.transform = 'translateY(-2px)'}
-            >
-              Prayer Times
-            </a>
-            <a
-              href="#donate"
-              onClick={(e) => scrollToSection(e, 'donate')}
-              className="bg-white hover:bg-orange-50 text-orange-600 font-medium py-3 px-6 rounded-md transition-all duration-300 text-center border border-orange-200"
-              onMouseOver={(e) => e.currentTarget.style.transform = 'translateY(-2px)'}
-              onMouseOut={(e) => e.currentTarget.style.transform = 'translateY(0)'}
-              onMouseDown={(e) => e.currentTarget.style.transform = 'scale(0.95)'}
-              onMouseUp={(e) => e.currentTarget.style.transform = 'translateY(-2px)'}
-            >
-              Donate Now
-            </a>
-          </div>
         </div>
       </section>
 
