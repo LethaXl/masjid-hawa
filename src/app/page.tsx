@@ -106,7 +106,7 @@ export default function Home() {
               </div>
             </div>
             
-            <div className="border-t border-gray-200 pt-16 mb-6"></div>
+            <div className="border-t border-gray-200 pt-8 mb-6"></div>
             
             <h3 className="text-2xl font-bold text-center mb-10 text-orange-700">
               Our Services
@@ -212,7 +212,7 @@ export default function Home() {
               Our Location
             </h2>
             <p className="text-center text-gray-700 max-w-2xl mx-auto mb-10">
-              We are conveniently located in Scarborough with easy access and ample parking.
+            We are located in Scarborough with easy access by car or transit, and ample parking available on-site and nearby.
             </p>
 
             <div className="max-w-3xl mx-auto">
@@ -275,7 +275,7 @@ export default function Home() {
                     <p className="mb-2">
                       <span className="font-medium">Nearby TTC Routes:</span>
                     </p>
-                    <div className="flex flex-wrap gap-2 justify-center mb-2">
+                    <div className="flex flex-wrap gap-2 justify-center mb-4">
                       <div className="bg-red-600 text-white font-bold py-1 px-3 rounded">
                         16
                       </div>
@@ -289,9 +289,21 @@ export default function Home() {
                         905
                       </div>
                     </div>
-                    <p className="mb-2">
-                      <span className="font-medium">Parking:</span> Free parking available on premises.
+                    <p className="mb-4">
+                      <span className="font-medium">Parking:</span> On-site and nearby plaza parking available.
                     </p>
+                    <div className="mt-6 mb-4">
+                      <Image 
+                        src="/images/layout_png.png" 
+                        alt="Masjid Hawa Layout" 
+                        width={600}
+                        height={400}
+                        className="rounded-lg shadow-md mx-auto"
+                      />
+                      <p className="text-center text-gray-600 mt-3">
+                        Masjid Hawa entrance and parking layout.
+                      </p>
+                    </div>
                   </div>
                 </div>
               </div>
