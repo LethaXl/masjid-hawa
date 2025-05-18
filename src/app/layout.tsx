@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Lateef, Amiri, Libre_Baskerville } from "next/font/google";
 import "./globals.css";
+import ErrorBoundary from '@/components/ErrorBoundary';
 
 const displayFont = Lateef({
   variable: "--font-display",
@@ -23,9 +24,46 @@ const accentFont = Amiri({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://masjidhawa.com"),
   title: "Masjid Hawa",
-  description: "Masjid Hawa is a mosque serving the Muslim community in Scarborough with daily prayers, Quran classes, and community services.",
-  keywords: ["Masjid", "Mosque", "Scarborough", "Prayer Times", "Quran Classes", "Islamic Center"],
+  description: "Masjid Hawa is a mosque serving the Muslim community in Scarborough with daily prayers, Quran classes, and community services. Join us for spiritual growth and community engagement.",
+  keywords: [
+    "Masjid",
+    "Mosque",
+    "Scarborough",
+    "Prayer Times",
+    "Quran Classes",
+    "Islamic Center",
+    "Muslim Community",
+    "Islamic Education",
+    "Daily Prayers",
+    "Jummah Prayer",
+    "Islamic Events",
+    "Muslim Community Center"
+  ],
+  authors: [{ name: "Masjid Hawa" }],
+  openGraph: {
+    type: "website",
+    locale: "en_CA",
+    url: "https://masjidhawa.com",
+    title: "Masjid Hawa",
+    description: "Masjid Hawa is a mosque serving the Muslim community in Scarborough with daily prayers, Quran classes, and community services.",
+    siteName: "Masjid Hawa",
+    images: [
+      {
+        url: "/images/main.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Masjid Hawa - Islamic Center in Scarborough"
+      }
+    ]
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Masjid Hawa",
+    description: "Masjid Hawa is a mosque serving the Muslim community in Scarborough with daily prayers, Quran classes, and community services.",
+    images: ["/images/main.jpg"]
+  },
   icons: {
     icon: [
       { url: '/favicon_io/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
@@ -45,6 +83,19 @@ export const metadata: Metadata = {
     ],
   },
   manifest: '/favicon_io/site.webmanifest',
+  robots: {
+    index: true,
+    follow: true,
+  },
+  verification: {
+    google: "your-google-site-verification",
+  },
+};
+
+export const viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 1,
 };
 
 export default function RootLayout({
@@ -63,7 +114,9 @@ export default function RootLayout({
         className={`${displayFont.variable} ${bodyFont.variable} ${accentFont.variable} antialiased`}
         suppressHydrationWarning={true}
       >
-        {children}
+        <ErrorBoundary>
+          {children}
+        </ErrorBoundary>
       </body>
     </html>
   );

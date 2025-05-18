@@ -3,6 +3,7 @@
 import { ReactNode } from 'react';
 import Header from './Header';
 import Footer from './Footer';
+import BackToTop from './BackToTop';
 
 type MainLayoutProps = {
   children: ReactNode;
@@ -17,6 +18,7 @@ const MainLayout = ({ children }: MainLayoutProps) => {
       </main>
       <div className="w-full h-30 bg-gradient-to-t from-orange-300 via-orange-200 to-orange-100" />
       <Footer />
+      <BackToTop />
     </div>
   );
 };
