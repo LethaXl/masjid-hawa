@@ -15,7 +15,7 @@ const Quote: React.FC<QuoteProps> = ({ text, author, className = '' }) => {
         <p className="mb-6 relative">
           {text}
         </p>
-        <cite className="block text-red-700 font-semibold text-right font-display not-italic">—{author}</cite>
+        <cite className="block text-red-700 font-semibold text-right font-display not-italic text-lg">—{author}</cite>
       </blockquote>
     </div>
   );
