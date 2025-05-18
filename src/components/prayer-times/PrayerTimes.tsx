@@ -186,7 +186,7 @@ const PrayerTimes = () => {
 
   return (
     <div className="overflow-hidden rounded-lg border border-gray-800">
-      <div className="bg-orange-700 text-white p-4 text-center border-b border-gray-800">
+      <div className="bg-orange-700 text-white p-2 text-center border-b border-gray-800">
         {prayerData && (
           <>
             <p className="text-md">{prayerData.date.readable}</p>
@@ -203,14 +203,14 @@ const PrayerTimes = () => {
             <table className="w-full border-collapse">
               <thead>
                 <tr className="border-b border-gray-800">
-                  <th className="bg-orange-700 text-white py-3 text-center font-semibold border-r border-gray-800">Prayer</th>
-                  <th className="bg-orange-700 text-white py-3 text-center font-semibold border-r border-gray-800">Adhan</th>
-                  <th className="bg-orange-700 text-white py-3 text-center font-semibold">Iqamah</th>
+                  <th className="bg-orange-700 text-white py-1 text-center font-bold text-base border-r border-gray-800">Prayer</th>
+                  <th className="bg-orange-700 text-white py-1 text-center font-bold text-base border-r border-gray-800">Adhan</th>
+                  <th className="bg-orange-700 text-white py-1 text-center font-bold text-base">Iqamah</th>
                 </tr>
               </thead>
               <tbody>
                 <tr className="even:bg-orange-50 odd:bg-white">
-                  <td className="py-3 px-2 text-orange-900 border-r border-gray-200">
+                  <td className="py-2 px-2 text-orange-900 border-r border-gray-200">
                     <div className="flex justify-center">
                       <div className="w-32 flex">
                         <div className="w-8 flex justify-end">
@@ -220,11 +220,11 @@ const PrayerTimes = () => {
                       </div>
                     </div>
                   </td>
-                  <td className="py-3 px-2 text-center text-orange-900 font-bold border-r border-gray-200">{formatTime(prayerData.timings.Fajr)}</td>
-                  <td className="py-3 px-2 text-center text-orange-900 font-bold">{getIqamahTime('Fajr', formatTime(prayerData.timings.Fajr))}</td>
+                  <td className="py-2 px-2 text-center text-orange-900 font-bold border-r border-gray-200">{formatTime(prayerData.timings.Fajr)}</td>
+                  <td className="py-2 px-2 text-center text-orange-900 font-bold">{getIqamahTime('Fajr', formatTime(prayerData.timings.Fajr))}</td>
                 </tr>
                 <tr className="even:bg-orange-50 odd:bg-white">
-                  <td className="py-3 px-2 text-orange-900 border-r border-gray-200">
+                  <td className="py-1 px-2 text-orange-900 border-r border-gray-200">
                     <div className="flex justify-center">
                       <div className="w-32 flex">
                         <div className="w-8 flex justify-end">
@@ -234,10 +234,10 @@ const PrayerTimes = () => {
                       </div>
                     </div>
                   </td>
-                  <td className="py-3 px-2 text-center text-orange-900 font-bold" colSpan={2}>{formatTime(prayerData.timings.Sunrise)}</td>
+                  <td className="py-1 px-2 text-center text-orange-900 font-bold" colSpan={2}>{formatTime(prayerData.timings.Sunrise)}</td>
                 </tr>
                 <tr className="even:bg-orange-50 odd:bg-white">
-                  <td className="py-3 px-2 text-orange-900 border-r border-gray-200">
+                  <td className="py-2 px-2 text-orange-900 border-r border-gray-200">
                     <div className="flex justify-center">
                       <div className="w-32 flex">
                         <div className="w-8 flex justify-end">
@@ -247,40 +247,11 @@ const PrayerTimes = () => {
                       </div>
                     </div>
                   </td>
-                  <td className="py-3 px-2 text-center text-orange-900 font-bold border-r border-gray-200">{formatTime(prayerData.timings.Dhuhr)}</td>
-                  <td className="py-3 px-2 text-center text-orange-900 font-bold">{getIqamahTime('Dhuhr', formatTime(prayerData.timings.Dhuhr))}</td>
-                </tr>
-                {/* Add Jumu'ah rows that show only on Friday */}
-                <tr className="even:bg-orange-50 odd:bg-white">
-                  <td className="py-3 px-2 text-orange-900 border-r border-gray-200">
-                    <div className="flex justify-center">
-                      <div className="w-32 flex">
-                        <div className="w-8 flex justify-end">
-                          <FaPeopleRoof className="text-orange-700" />
-                        </div>
-                        <span className="ml-3 font-medium">Jumu'ah 1</span>
-                      </div>
-                    </div>
-                  </td>
-                  <td className="py-3 px-2 text-center text-orange-900 font-bold border-r border-gray-200">1:15 PM</td>
-                  <td className="py-3 px-2 text-center text-orange-900 font-bold">1:30 PM</td>
+                  <td className="py-2 px-2 text-center text-orange-900 font-bold border-r border-gray-200">{formatTime(prayerData.timings.Dhuhr)}</td>
+                  <td className="py-2 px-2 text-center text-orange-900 font-bold">{getIqamahTime('Dhuhr', formatTime(prayerData.timings.Dhuhr))}</td>
                 </tr>
                 <tr className="even:bg-orange-50 odd:bg-white">
-                  <td className="py-3 px-2 text-orange-900 border-r border-gray-200">
-                    <div className="flex justify-center">
-                      <div className="w-32 flex">
-                        <div className="w-8 flex justify-end">
-                          <FaPeopleRoof className="text-orange-700" />
-                        </div>
-                        <span className="ml-3 font-medium">Jumu'ah 2</span>
-                      </div>
-                    </div>
-                  </td>
-                  <td className="py-3 px-2 text-center text-orange-900 font-bold border-r border-gray-200">1:15 PM</td>
-                  <td className="py-3 px-2 text-center text-orange-900 font-bold">2:30 PM</td>
-                </tr>
-                <tr className="even:bg-orange-50 odd:bg-white">
-                  <td className="py-3 px-2 text-orange-900 border-r border-gray-200">
+                  <td className="py-2 px-2 text-orange-900 border-r border-gray-200">
                     <div className="flex justify-center">
                       <div className="w-32 flex">
                         <div className="w-8 flex justify-end">
@@ -290,11 +261,11 @@ const PrayerTimes = () => {
                       </div>
                     </div>
                   </td>
-                  <td className="py-3 px-2 text-center text-orange-900 font-bold border-r border-gray-200">{formatTime(prayerData.timings.Asr)}</td>
-                  <td className="py-3 px-2 text-center text-orange-900 font-bold">{getIqamahTime('Asr', formatTime(prayerData.timings.Asr))}</td>
+                  <td className="py-2 px-2 text-center text-orange-900 font-bold border-r border-gray-200">{formatTime(prayerData.timings.Asr)}</td>
+                  <td className="py-2 px-2 text-center text-orange-900 font-bold">{getIqamahTime('Asr', formatTime(prayerData.timings.Asr))}</td>
                 </tr>
                 <tr className="even:bg-orange-50 odd:bg-white">
-                  <td className="py-3 px-2 text-orange-900 border-r border-gray-200">
+                  <td className="py-2 px-2 text-orange-900 border-r border-gray-200">
                     <div className="flex justify-center">
                       <div className="w-32 flex">
                         <div className="w-8 flex justify-end">
@@ -304,11 +275,11 @@ const PrayerTimes = () => {
                       </div>
                     </div>
                   </td>
-                  <td className="py-3 px-2 text-center text-orange-900 font-bold border-r border-gray-200">{formatTime(prayerData.timings.Maghrib)}</td>
-                  <td className="py-3 px-2 text-center text-orange-900 font-bold">{getIqamahTime('Maghrib', formatTime(prayerData.timings.Maghrib))}</td>
+                  <td className="py-2 px-2 text-center text-orange-900 font-bold border-r border-gray-200">{formatTime(prayerData.timings.Maghrib)}</td>
+                  <td className="py-2 px-2 text-center text-orange-900 font-bold">{getIqamahTime('Maghrib', formatTime(prayerData.timings.Maghrib))}</td>
                 </tr>
                 <tr className="even:bg-orange-50 odd:bg-white">
-                  <td className="py-3 px-2 text-orange-900 border-r border-gray-200">
+                  <td className="py-2 px-2 text-orange-900 border-r border-gray-200">
                     <div className="flex justify-center">
                       <div className="w-32 flex">
                         <div className="w-8 flex justify-end">
@@ -318,14 +289,42 @@ const PrayerTimes = () => {
                       </div>
                     </div>
                   </td>
-                  <td className="py-3 px-2 text-center text-orange-900 font-bold border-r border-gray-200">{formatTime(prayerData.timings.Isha)}</td>
-                  <td className="py-3 px-2 text-center text-orange-900 font-bold">{getIqamahTime('Isha', formatTime(prayerData.timings.Isha))}</td>
+                  <td className="py-2 px-2 text-center text-orange-900 font-bold border-r border-gray-200">{formatTime(prayerData.timings.Isha)}</td>
+                  <td className="py-2 px-2 text-center text-orange-900 font-bold">{getIqamahTime('Isha', formatTime(prayerData.timings.Isha))}</td>
+                </tr>
+                <tr className="even:bg-orange-50 odd:bg-white">
+                  <td className="py-1 px-2 text-orange-900 border-r border-gray-200">
+                    <div className="flex justify-center">
+                      <div className="w-32 flex">
+                        <div className="w-8 flex justify-end">
+                          <FaPeopleRoof className="text-orange-700" />
+                        </div>
+                        <span className="ml-3 font-medium">Jumu'ah 1</span>
+                      </div>
+                    </div>
+                  </td>
+                  <td className="py-1 px-2 text-center text-orange-900 font-bold border-r border-gray-200">1:15 PM</td>
+                  <td className="py-1 px-2 text-center text-orange-900 font-bold">1:30 PM</td>
+                </tr>
+                <tr className="even:bg-orange-50 odd:bg-white">
+                  <td className="py-1 px-2 text-orange-900 border-r border-gray-200">
+                    <div className="flex justify-center">
+                      <div className="w-32 flex">
+                        <div className="w-8 flex justify-end">
+                          <FaPeopleRoof className="text-orange-700" />
+                        </div>
+                        <span className="ml-3 font-medium">Jumu'ah 2</span>
+                      </div>
+                    </div>
+                  </td>
+                  <td className="py-1 px-2 text-center text-orange-900 font-bold border-r border-gray-200">1:15 PM</td>
+                  <td className="py-1 px-2 text-center text-orange-900 font-bold">2:30 PM</td>
                 </tr>
               </tbody>
             </table>
           </div>
           
-          <div className="p-3 text-center text-sm text-gray-600 bg-gray-50 border-t border-gray-800">
+          <div className="p-2 text-center text-sm text-gray-600 bg-gray-50 border-t border-gray-800">
             <p>Iqamah times shown here are approximate.</p>
           </div>
         </>

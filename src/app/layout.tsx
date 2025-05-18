@@ -23,7 +23,7 @@ const accentFont = Amiri({
 });
 
 export const metadata: Metadata = {
-  title: "Masjid Hawa - Scarborough Mosque",
+  title: "Masjid Hawa",
   description: "Masjid Hawa is a mosque serving the Muslim community in Scarborough with daily prayers, Quran classes, and community services.",
   keywords: ["Masjid", "Mosque", "Scarborough", "Prayer Times", "Quran Classes", "Islamic Center"],
   icons: {

@@ -16,11 +16,11 @@ export default function Home() {
 
   return (
     <MainLayout>
-      {/* Hero Section */}
-      <section id="home" className="relative bg-gradient-to-b from-orange-300 via-orange-200 to-orange-100 text-orange-900 pt-10 w-full border-b border-orange-200">
-        <div className="relative z-10 container mx-auto px-4 py-12 flex flex-col items-center">
+      {/* Unified Hero + Prayer Times Section */}
+      <section id="home" className="relative min-h-screen flex items-center justify-center bg-gradient-to-b from-orange-300 via-orange-200 to-orange-100 text-orange-900 w-full border-b border-orange-200">
+        <div className="relative z-10 container mx-auto px-4 py-8 pt-4 flex flex-col items-center">
           {/* Mosque Icon */}
-          <div className="mb-4 flex justify-center">
+          <div className="mb-1 flex justify-center">
             <Image 
               src="/images/favicon1.png" 
               alt="Masjid Hawa Logo" 
@@ -30,22 +30,15 @@ export default function Home() {
               priority
             />
           </div>
-          <h1 className="text-4xl md:text-6xl font-extrabold text-center mb-6 tracking-tight text-orange-700">
+          <h1 className="text-3xl md:text-5xl font-extrabold text-center mt-0 mb-2 tracking-tight text-orange-700">
             Masjid Hawa
           </h1>
-          <p className="text-lg md:text-xl text-center mb-6 max-w-xl text-orange-700 font-medium">
+          <p className="text-base md:text-lg text-center mb-4 max-w-xl text-orange-700 font-medium">
             Welcoming you to a new masjid in Scarborough, dedicated to prayer, unity, and growth.
           </p>
-        </div>
-      </section>
 
-      {/* Prayer Times Section */}
-      <section id="prayer-times" className="py-16 bg-orange-100 scroll-mt-20 w-full">
-        <div className="container mx-auto px-4">
-          <div className="bg-white rounded-lg shadow-md p-8">
-            <h2 className="text-3xl font-bold text-center mb-10 text-orange-700">
-              Prayer Schedule
-            </h2>
+          {/* Prayer Times Card - visually joined */}
+          <div className="w-full max-w-xl">
             <div className="max-w-xl mx-auto">
               <PrayerTimes />
             </div>
@@ -54,7 +47,7 @@ export default function Home() {
       </section>
 
       {/* About & Services Section */}
-      <section id="about" className="py-16 bg-orange-100 scroll-mt-20 w-full">
+      <section id="about" className="py-16 bg-orange-100 scroll-mt-20 w-full border-b border-orange-200">
         <div className="container mx-auto px-4">
           <div className="bg-white rounded-lg shadow-md p-8">
             <h2 className="text-3xl font-bold text-center mb-10 text-orange-700">
@@ -136,7 +129,7 @@ export default function Home() {
       </section>
 
       {/* Donate Section */}
-      <section id="donate" className="py-16 bg-orange-100 scroll-mt-20 w-full">
+      <section id="donate" className="py-16 bg-orange-100 scroll-mt-20 w-full border-b border-orange-200">
         <div className="container mx-auto px-4">
           <div className="bg-white rounded-lg shadow-md p-8">
             <h2 className="text-3xl font-bold text-center mb-10 text-orange-700">
@@ -188,7 +181,7 @@ export default function Home() {
       </section>
 
       {/* Location Section */}
-      <section id="location" className="py-16 bg-orange-100 scroll-mt-20 w-full">
+      <section id="location" className="py-16 bg-orange-100 scroll-mt-20 w-full border-b border-orange-200">
         <div className="container mx-auto px-4">
           <div className="bg-white rounded-lg shadow-md p-8">
             <h2 className="text-3xl font-bold text-center mb-10 text-orange-700">
