@@ -96,3 +96,11 @@ section {
   font-size: 2.5rem;
   letter-spacing: 0.025em;
 }
+
+.frosted-glass {
+  background: rgba(255, 115, 0, 0.7); /* fallback for orange-400/80 */
+  backdrop-filter: blur(12px) saturate(160%);
+  -webkit-backdrop-filter: blur(12px) saturate(160%);
+  box-shadow: 0 2px 16px 0 rgba(0,0,0,0.08);
+  transition: background 0.3s, backdrop-filter 0.3s;
+}

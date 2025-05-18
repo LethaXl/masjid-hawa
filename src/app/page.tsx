@@ -17,7 +17,7 @@ export default function Home() {
   return (
     <MainLayout>
       {/* Unified Hero + Prayer Times Section */}
-      <section id="home" className="relative min-h-screen flex items-center justify-center bg-gradient-to-b from-orange-300 via-orange-200 to-orange-100 text-orange-900 w-full border-b border-orange-200">
+      <section id="home" className="relative min-h-screen flex items-center justify-center bg-gradient-to-b from-orange-300 via-orange-200 to-orange-100 text-orange-900 w-full border-b border-orange-200 scroll-mt-20">
         <div className="relative z-10 container mx-auto px-4 py-8 pt-4 flex flex-col items-center">
           {/* Mosque Icon */}
           <div className="mb-1 flex justify-center">

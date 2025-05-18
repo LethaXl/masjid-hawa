@@ -15,7 +15,7 @@ const MainLayout = ({ children }: MainLayoutProps) => {
       <main className="flex-grow w-full">
         {children}
       </main>
-      <div className="w-full h-20 bg-gradient-to-t from-orange-300 via-orange-200 to-orange-100" />
+      <div className="w-full h-30 bg-gradient-to-t from-orange-300 via-orange-200 to-orange-100" />
       <Footer />
     </div>
   );
