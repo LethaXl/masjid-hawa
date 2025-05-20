@@ -74,7 +74,7 @@ const PrayerTimes = () => {
     };
 
     fetchPrayerTimes();
-  }, []);
+  }, [latitude, longitude]);
 
   // Function to format the time from 24h to 12h format
   const formatTime = (time: string) => {
@@ -89,27 +89,6 @@ const PrayerTimes = () => {
     const hour12 = hour % 12 || 12;
     
     return `${hour12}:${minutes} ${period}`;
-  };
-
-  // Function to round a time to the nearest 5 or 0 minute
-  const roundToNearestFiveOrZero = (time: string): string => {
-    if (!time) return '';
-    
-    const [hours, minutesPart] = time.split(':');
-    const [minutes, period] = minutesPart.split(' ');
-    const mins = parseInt(minutes, 10);
-    
-    // Round to nearest 5
-    let roundedMins = Math.round(mins / 5) * 5;
-    
-    // If rounded to 60, increment hour and set mins to 0
-    let hour = parseInt(hours, 10);
-    if (roundedMins === 60) {
-      hour = (hour + 1) % 12 || 12;
-      roundedMins = 0;
-    }
-    
-    return `${hour}:${roundedMins.toString().padStart(2, '0')} ${period}`;
   };
 
   // Get Iqamah time for each prayer
@@ -179,12 +158,6 @@ const PrayerTimes = () => {
       </div>
     );
   }
-
-  // Function to determine if today is Friday
-  const isFriday = () => {
-    const today = new Date();
-    return today.getDay() === 5; // 5 is Friday
-  };
 
   return (
     <div className="overflow-hidden rounded-lg border border-gray-800">
@@ -301,7 +274,7 @@ const PrayerTimes = () => {
                         <div className="flex justify-end" style={{ width: isMobileSConstrainedView ? 16 : isMobileMConstrainedView ? 20 : 32 }}>
                           <FaPeopleRoof className={`text-orange-700 ${isMobileSConstrainedView || isMobileMConstrainedView ? 'text-base' : ''}`} />
                         </div>
-                        <span className={`font-medium ${isMobileSConstrainedView ? 'text-xs whitespace-nowrap ml-0' : isMobileMConstrainedView ? 'text-xs ml-1' : 'ml-1'}`}>Jumu'ah 1</span>
+                        <span className={`font-medium ${isMobileSConstrainedView ? 'text-xs whitespace-nowrap ml-0' : isMobileMConstrainedView ? 'text-xs ml-1' : 'ml-1'}`}>Jumu&apos;ah 1</span>
                       </div>
                     </div>
                   </td>
@@ -315,7 +288,7 @@ const PrayerTimes = () => {
                         <div className="flex justify-end" style={{ width: isMobileSConstrainedView ? 16 : isMobileMConstrainedView ? 20 : 32 }}>
                           <FaPeopleRoof className={`text-orange-700 ${isMobileSConstrainedView || isMobileMConstrainedView ? 'text-base' : ''}`} />
                         </div>
-                        <span className={`font-medium ${isMobileSConstrainedView ? 'text-xs whitespace-nowrap ml-0' : isMobileMConstrainedView ? 'text-xs ml-1' : 'ml-1'}`}>Jumu'ah 2</span>
+                        <span className={`font-medium ${isMobileSConstrainedView ? 'text-xs whitespace-nowrap ml-0' : isMobileMConstrainedView ? 'text-xs ml-1' : 'ml-1'}`}>Jumu&apos;ah 2</span>
                       </div>
                     </div>
                   </td>
