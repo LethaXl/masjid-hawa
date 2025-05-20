@@ -1,6 +1,5 @@
 'use client';
 
-import Link from 'next/link';
 import { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
 import { useScreenSize } from '@/hooks/useScreenSize';
@@ -16,7 +15,6 @@ const navLinks = [
 ];
 
 const Header = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
   const [isMobileTabsOpen, setIsMobileTabsOpen] = useState(false);
@@ -75,7 +73,6 @@ const Header = () => {
     }
     if (id === 'home') {
       window.scrollTo({ top: 0, behavior: 'smooth' });
-      setIsMenuOpen(false);
       setActiveSection('home');
       return;
     }
@@ -83,7 +80,6 @@ const Header = () => {
     if (element) {
       const y = element.getBoundingClientRect().top + window.scrollY - headerHeight;
       window.scrollTo({ top: y, behavior: 'smooth' });
-      setIsMenuOpen(false);
       setActiveSection(id);
     }
   };

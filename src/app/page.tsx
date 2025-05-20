@@ -14,14 +14,6 @@ export default function Home() {
     isMobileXLConstrainedView 
   } = useScreenSize();
 
-  const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
-    e.preventDefault();
-    const element = document.getElementById(id);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
-
   return (
     <MainLayout>
       {/* Unified Hero + Prayer Times Section */}

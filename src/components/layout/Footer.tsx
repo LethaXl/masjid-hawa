@@ -1,16 +1,6 @@
 'use client';
 
-import Link from 'next/link';
-
 const Footer = () => {
-  const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
-    e.preventDefault();
-    const element = document.getElementById(id);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
-
   return (
     <footer className="bg-orange-400 text-white py-4">
       <div className="container mx-auto px-4">
