@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
+import { useScreenSize } from '@/hooks/useScreenSize';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -13,6 +14,12 @@ const Header = () => {
   const [tabVis, setTabVis] = useState([false, false, false, false, false]);
   const sectionIds = ['home', 'about', 'donate', 'location', 'contact'];
   const headerRef = useRef<HTMLDivElement>(null);
+  const { 
+    isMobileSConstrainedView, 
+    isMobileMConstrainedView, 
+    isMobileLConstrainedView, 
+    isMobileXLConstrainedView 
+  } = useScreenSize();
 
   const navLinks = [
     { id: "home", label: "Home" },
@@ -94,13 +101,13 @@ const Header = () => {
             <Image 
               src="/images/favicon1.png" 
               alt="Masjid Hawa Logo" 
-              width={40} 
-              height={40} 
+              width={isMobileSConstrainedView ? 32 : isMobileMConstrainedView ? 36 : isMobileLConstrainedView ? 38 : isMobileXLConstrainedView ? 40 : 40} 
+              height={isMobileSConstrainedView ? 32 : isMobileMConstrainedView ? 36 : isMobileLConstrainedView ? 38 : isMobileXLConstrainedView ? 40 : 40} 
               className="rounded-full shadow border-2 border-orange-500 bg-white"
               priority
             />
           </div>
-          <span className="text-2xl md:text-3xl font-extrabold tracking-tight font-display text-orange-100 drop-shadow-sm" style={{lineHeight: '1.1'}}>
+          <span className={`font-extrabold tracking-tight font-display text-orange-100 drop-shadow-sm ${isMobileSConstrainedView ? 'text-xl' : isMobileMConstrainedView ? 'text-2xl' : isMobileLConstrainedView ? 'text-2xl' : isMobileXLConstrainedView ? 'text-2xl' : 'text-3xl'}`} style={{lineHeight: '1.1'}}>
             Masjid Hawa
           </span>
         </a>
@@ -116,7 +123,7 @@ const Header = () => {
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
-              className="w-7 h-7"
+              className={`${isMobileSConstrainedView ? 'w-6 h-6' : isMobileMConstrainedView ? 'w-6 h-6' : isMobileLConstrainedView ? 'w-7 h-7' : isMobileXLConstrainedView ? 'w-7 h-7' : 'w-7 h-7'}`}
             >
               {isMobileTabsOpen ? (
                 <path
@@ -145,8 +152,8 @@ const Header = () => {
               href={`#${link.id}`}
               onClick={e => scrollToSection(e, link.id)}
               className={`relative px-5 md:px-2 lg:px-5 py-1 text-lg md:text-base lg:text-lg font-semibold transition-all duration-200
-                after:content-[''] after:block after:w-0 after:h-0.5 after:bg-white after:transition-all after:duration-300 after:absolute after:left-0 after:bottom-0
-                ${activeSection === link.id ? 'text-white after:w-full' : 'hover:text-white hover:bg-orange-500 rounded-full'}
+                after:content-[''] after:block after:h-0.5 after:bg-white after:transition-all after:duration-300 after:absolute after:left-0 after:bottom-0
+                ${activeSection === link.id ? 'text-white after:w-full' : 'hover:text-white hover:bg-orange-500 rounded-full after:w-0'}
               `}
             >
               {link.label}
@@ -155,7 +162,7 @@ const Header = () => {
         </nav>
       </div>
 
-      {/* Mobile Tab Navigation - browser tab style, hanging cards from header, with page background on sides */}
+      {/* Mobile Tab Navigation */}
       {showMobileTabs && (
         <nav className="md:hidden w-full flex justify-center -mt-2 z-40 relative" style={{ pointerEvents: 'auto' }}>
           <div className="flex justify-center gap-2">
@@ -164,7 +171,14 @@ const Header = () => {
                 key={link.id}
                 href={`#${link.id}`}
                 onClick={e => scrollToSection(e, link.id)}
-                className={`px-4 py-2 rounded-b-lg font-semibold text-xs transition-all duration-300 whitespace-nowrap text-center shadow-lg max-w-[90px] min-w-[60px] truncate border backdrop-blur-sm
+                className={`rounded-b-lg font-semibold transition-all duration-300 whitespace-nowrap text-center shadow-lg border backdrop-blur-sm
+                  ${
+                    isMobileSConstrainedView ? 'px-2 py-1 text-xs max-w-[60px] min-w-[40px]' : 
+                    isMobileMConstrainedView ? 'px-3 py-1 text-xs max-w-[65px] min-w-[45px]' :
+                    isMobileLConstrainedView ? 'px-4 py-2 text-xs max-w-[80px] min-w-[60px]' :
+                    isMobileXLConstrainedView ? 'px-4 py-2 text-xs max-w-[85px] min-w-[65px]' :
+                    'px-4 py-2 text-xs max-w-[90px] min-w-[60px]'
+                  }
                   ${activeSection === link.id
                     ? 'bg-orange-400/90 text-white border-orange-200'
                     : 'bg-white/70 text-orange-900 border-orange-100'}

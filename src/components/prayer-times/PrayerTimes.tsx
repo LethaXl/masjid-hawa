@@ -16,6 +16,7 @@ import { WiMoonset, WiMoonrise } from 'react-icons/wi';
 import { FaPeopleRoof } from 'react-icons/fa6';
 import { MdOutlineWbSunny } from 'react-icons/md';
 import { CiCloudSun } from 'react-icons/ci';
+import { useScreenSize } from '@/hooks/useScreenSize';
 
 type PrayerData = {
   timings: {
@@ -45,6 +46,7 @@ const PrayerTimes = () => {
   const [prayerData, setPrayerData] = useState<PrayerData | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
+  const { isMobileLConstrainedView, isMobileMConstrainedView, isMobileSConstrainedView } = useScreenSize();
 
   // Scarborough coordinates (approximate)
   const latitude = 43.7764;
@@ -203,129 +205,135 @@ const PrayerTimes = () => {
             <table className="w-full border-collapse">
               <thead>
                 <tr className="border-b border-gray-800">
-                  <th className="bg-orange-700 text-white py-1 text-center font-bold text-base border-r border-gray-800">Prayer</th>
-                  <th className="bg-orange-700 text-white py-1 text-center font-bold text-base border-r border-gray-800">Adhan</th>
-                  <th className="bg-orange-700 text-white py-1 text-center font-bold text-base">Iqamah</th>
+                  <th className={`bg-orange-700 text-white text-center font-bold border-r border-gray-800 ${isMobileSConstrainedView || isMobileMConstrainedView ? 'py-0.5 text-xs' : 'py-1 text-base'}`}>Prayer</th>
+                  <th className={`bg-orange-700 text-white text-center font-bold border-r border-gray-800 ${isMobileSConstrainedView || isMobileMConstrainedView ? 'py-0.5 text-xs' : 'py-1 text-base'}`}>Adhan</th>
+                  <th className={`bg-orange-700 text-white text-center font-bold ${isMobileSConstrainedView || isMobileMConstrainedView ? 'py-0.5 text-xs' : 'py-1 text-base'}`}>Iqamah</th>
                 </tr>
               </thead>
               <tbody>
                 <tr className="even:bg-orange-50 odd:bg-white">
-                  <td className="py-2 px-2 text-orange-900 border-r border-gray-200">
+                  <td className={`border-r border-gray-200 text-orange-900 ${isMobileSConstrainedView ? 'py-1 px-1' : isMobileMConstrainedView ? 'py-1 px-1' : 'py-2 px-2'}`}> 
                     <div className="flex justify-center">
-                      <div className="w-32 flex">
-                        <div className="w-8 flex justify-end">
-                          <WiMoonset className="text-orange-700 text-xl" />
+                      <div className={`${isMobileSConstrainedView ? 'w-20' : 'w-32'} flex items-center`}>
+                        <div className="flex justify-end" style={{ width: isMobileSConstrainedView ? 16 : isMobileMConstrainedView ? 20 : 32 }}>
+                          <WiMoonset className={`text-orange-700 ${isMobileSConstrainedView || isMobileMConstrainedView ? 'text-base' : 'text-xl'}`} />
                         </div>
-                        <span className="ml-3 font-medium">Fajr</span>
+                        <span className={`ml-1 font-medium ${isMobileSConstrainedView ? 'text-xs' : isMobileMConstrainedView ? 'text-xs' : ''}`}>Fajr</span>
                       </div>
                     </div>
                   </td>
-                  <td className="py-2 px-2 text-center text-orange-900 font-bold border-r border-gray-200">{formatTime(prayerData.timings.Fajr)}</td>
-                  <td className="py-2 px-2 text-center text-orange-900 font-bold">{getIqamahTime('Fajr', formatTime(prayerData.timings.Fajr))}</td>
+                  <td className={`text-center text-orange-900 font-bold border-r border-gray-200 ${isMobileSConstrainedView || isMobileMConstrainedView ? 'py-1 px-1' : 'py-2 px-2'}`}><span className={`${isMobileSConstrainedView || isMobileMConstrainedView ? 'text-xs' : 'text-sm'} lg:text-base xl:text-lg whitespace-nowrap`}>{formatTime(prayerData.timings.Fajr)}</span></td>
+                  <td className={`text-center text-orange-900 font-bold ${isMobileSConstrainedView || isMobileMConstrainedView ? 'py-1 px-1' : 'py-2 px-2'}`}><span className={`${isMobileSConstrainedView || isMobileMConstrainedView ? 'text-xs' : 'text-sm'} lg:text-base xl:text-lg whitespace-nowrap`}>{getIqamahTime('Fajr', formatTime(prayerData.timings.Fajr))}</span></td>
                 </tr>
                 <tr className="even:bg-orange-50 odd:bg-white">
-                  <td className="py-1 px-2 text-orange-900 border-r border-gray-200">
+                  <td className={`border-r border-gray-200 text-orange-900 ${isMobileSConstrainedView ? 'py-1 px-1' : isMobileMConstrainedView ? 'py-1 px-1' : 'py-2 px-2'}`}> 
                     <div className="flex justify-center">
-                      <div className="w-32 flex">
-                        <div className="w-8 flex justify-end">
-                          <FiSunrise className="text-orange-700" />
+                      <div className={`${isMobileSConstrainedView ? 'w-20' : 'w-32'} flex items-center`}>
+                        <div className="flex justify-end" style={{ width: isMobileSConstrainedView ? 16 : isMobileMConstrainedView ? 20 : 32 }}>
+                          <FiSunrise className={`text-orange-700 ${isMobileSConstrainedView || isMobileMConstrainedView ? 'text-base' : ''}`} />
                         </div>
-                        <span className="ml-3 font-medium">Sunrise</span>
+                        <span className={`ml-1 font-medium ${isMobileSConstrainedView ? 'text-xs' : isMobileMConstrainedView ? 'text-xs' : ''}`}>Sunrise</span>
                       </div>
                     </div>
                   </td>
-                  <td className="py-1 px-2 text-center text-orange-900 font-bold" colSpan={2}>{formatTime(prayerData.timings.Sunrise)}</td>
+                  <td className={`text-center text-orange-900 font-bold col-span-2 ${isMobileSConstrainedView || isMobileMConstrainedView ? 'py-0.5 px-1' : 'py-1 px-2'}`} colSpan={2}><span className={`${isMobileSConstrainedView || isMobileMConstrainedView ? 'text-xs' : 'text-sm'} lg:text-base xl:text-lg whitespace-nowrap`}>{formatTime(prayerData.timings.Sunrise)}</span></td>
                 </tr>
                 <tr className="even:bg-orange-50 odd:bg-white">
-                  <td className="py-2 px-2 text-orange-900 border-r border-gray-200">
+                  <td className={`border-r border-gray-200 text-orange-900 ${isMobileSConstrainedView ? 'py-1 px-1' : isMobileMConstrainedView ? 'py-1 px-1' : 'py-2 px-2'}`}> 
                     <div className="flex justify-center">
-                      <div className="w-32 flex">
-                        <div className="w-8 flex justify-end">
-                          <MdOutlineWbSunny className="text-orange-700" />
+                      <div className={`${isMobileSConstrainedView ? 'w-20' : 'w-32'} flex items-center`}>
+                        <div className="flex justify-end" style={{ width: isMobileSConstrainedView ? 16 : isMobileMConstrainedView ? 20 : 32 }}>
+                          <MdOutlineWbSunny className={`text-orange-700 ${isMobileSConstrainedView || isMobileMConstrainedView ? 'text-base' : ''}`} />
                         </div>
-                        <span className="ml-3 font-medium">Dhuhr</span>
+                        <span className={`ml-1 font-medium ${isMobileSConstrainedView ? 'text-xs' : isMobileMConstrainedView ? 'text-xs' : ''}`}>Dhuhr</span>
                       </div>
                     </div>
                   </td>
-                  <td className="py-2 px-2 text-center text-orange-900 font-bold border-r border-gray-200">{formatTime(prayerData.timings.Dhuhr)}</td>
-                  <td className="py-2 px-2 text-center text-orange-900 font-bold">{getIqamahTime('Dhuhr', formatTime(prayerData.timings.Dhuhr))}</td>
+                  <td className={`text-center text-orange-900 font-bold border-r border-gray-200 ${isMobileSConstrainedView || isMobileMConstrainedView ? 'py-1 px-1' : 'py-2 px-2'}`}><span className={`${isMobileSConstrainedView || isMobileMConstrainedView ? 'text-xs' : 'text-sm'} lg:text-base xl:text-lg whitespace-nowrap`}>{formatTime(prayerData.timings.Dhuhr)}</span></td>
+                  <td className={`text-center text-orange-900 font-bold ${isMobileSConstrainedView || isMobileMConstrainedView ? 'py-1 px-1' : 'py-2 px-2'}`}><span className={`${isMobileSConstrainedView || isMobileMConstrainedView ? 'text-xs' : 'text-sm'} lg:text-base xl:text-lg whitespace-nowrap`}>{getIqamahTime('Dhuhr', formatTime(prayerData.timings.Dhuhr))}</span></td>
                 </tr>
                 <tr className="even:bg-orange-50 odd:bg-white">
-                  <td className="py-2 px-2 text-orange-900 border-r border-gray-200">
+                  <td className={`border-r border-gray-200 text-orange-900 ${isMobileSConstrainedView ? 'py-1 px-1' : isMobileMConstrainedView ? 'py-1 px-1' : 'py-2 px-2'}`}> 
                     <div className="flex justify-center">
-                      <div className="w-32 flex">
-                        <div className="w-8 flex justify-end">
-                          <CiCloudSun className="text-orange-700 text-xl" />
+                      <div className={`${isMobileSConstrainedView ? 'w-20' : 'w-32'} flex items-center`}>
+                        <div className="flex justify-end" style={{ width: isMobileSConstrainedView ? 16 : isMobileMConstrainedView ? 20 : 32 }}>
+                          <CiCloudSun className={`text-orange-700 ${isMobileSConstrainedView || isMobileMConstrainedView ? 'text-base' : 'text-xl'}`} />
                         </div>
-                        <span className="ml-3 font-medium">Asr</span>
+                        <span className={`ml-1 font-medium ${isMobileSConstrainedView ? 'text-xs' : isMobileMConstrainedView ? 'text-xs' : ''}`}>Asr</span>
                       </div>
                     </div>
                   </td>
-                  <td className="py-2 px-2 text-center text-orange-900 font-bold border-r border-gray-200">{formatTime(prayerData.timings.Asr)}</td>
-                  <td className="py-2 px-2 text-center text-orange-900 font-bold">{getIqamahTime('Asr', formatTime(prayerData.timings.Asr))}</td>
+                  <td className={`text-center text-orange-900 font-bold border-r border-gray-200 ${isMobileSConstrainedView || isMobileMConstrainedView ? 'py-1 px-1' : 'py-2 px-2'}`}><span className={`${isMobileSConstrainedView || isMobileMConstrainedView ? 'text-xs' : 'text-sm'} lg:text-base xl:text-lg whitespace-nowrap`}>{formatTime(prayerData.timings.Asr)}</span></td>
+                  <td className={`text-center text-orange-900 font-bold ${isMobileSConstrainedView || isMobileMConstrainedView ? 'py-1 px-1' : 'py-2 px-2'}`}><span className={`${isMobileSConstrainedView || isMobileMConstrainedView ? 'text-xs' : 'text-sm'} lg:text-base xl:text-lg whitespace-nowrap`}>{getIqamahTime('Asr', formatTime(prayerData.timings.Asr))}</span></td>
                 </tr>
                 <tr className="even:bg-orange-50 odd:bg-white">
-                  <td className="py-2 px-2 text-orange-900 border-r border-gray-200">
+                  <td className={`border-r border-gray-200 text-orange-900 ${isMobileSConstrainedView ? 'py-1 px-1' : isMobileMConstrainedView ? 'py-1 px-1' : 'py-2 px-2'}`}> 
                     <div className="flex justify-center">
-                      <div className="w-32 flex">
-                        <div className="w-8 flex justify-end">
-                          <FiSunset className="text-orange-700" />
+                      <div className={`${isMobileSConstrainedView ? 'w-20' : 'w-32'} flex items-center`}>
+                        <div className="flex justify-end" style={{ width: isMobileSConstrainedView ? 16 : isMobileMConstrainedView ? 20 : 32 }}>
+                          <FiSunset className={`text-orange-700 ${isMobileSConstrainedView || isMobileMConstrainedView ? 'text-base' : ''}`} />
                         </div>
-                        <span className="ml-3 font-medium">Maghrib</span>
+                        <span className={`ml-1 font-medium ${isMobileSConstrainedView ? 'text-xs' : isMobileMConstrainedView ? 'text-xs' : ''}`}>Maghrib</span>
                       </div>
                     </div>
                   </td>
-                  <td className="py-2 px-2 text-center text-orange-900 font-bold border-r border-gray-200">{formatTime(prayerData.timings.Maghrib)}</td>
-                  <td className="py-2 px-2 text-center text-orange-900 font-bold">{getIqamahTime('Maghrib', formatTime(prayerData.timings.Maghrib))}</td>
+                  <td className={`text-center text-orange-900 font-bold border-r border-gray-200 ${isMobileSConstrainedView || isMobileMConstrainedView ? 'py-1 px-1' : 'py-2 px-2'}`}><span className={`${isMobileSConstrainedView || isMobileMConstrainedView ? 'text-xs' : 'text-sm'} lg:text-base xl:text-lg whitespace-nowrap`}>{formatTime(prayerData.timings.Maghrib)}</span></td>
+                  <td className={`text-center text-orange-900 font-bold ${isMobileSConstrainedView || isMobileMConstrainedView ? 'py-1 px-1' : 'py-2 px-2'}`}><span className={`${isMobileSConstrainedView || isMobileMConstrainedView ? 'text-xs' : 'text-sm'} lg:text-base xl:text-lg whitespace-nowrap`}>{getIqamahTime('Maghrib', formatTime(prayerData.timings.Maghrib))}</span></td>
                 </tr>
                 <tr className="even:bg-orange-50 odd:bg-white">
-                  <td className="py-2 px-2 text-orange-900 border-r border-gray-200">
+                  <td className={`border-r border-gray-200 text-orange-900 ${isMobileSConstrainedView ? 'py-1 px-1' : isMobileMConstrainedView ? 'py-1 px-1' : 'py-2 px-2'}`}> 
                     <div className="flex justify-center">
-                      <div className="w-32 flex">
-                        <div className="w-8 flex justify-end">
-                          <WiMoonrise className="text-orange-700 text-xl" />
+                      <div className={`${isMobileSConstrainedView ? 'w-20' : 'w-32'} flex items-center`}>
+                        <div className="flex justify-end" style={{ width: isMobileSConstrainedView ? 16 : isMobileMConstrainedView ? 20 : 32 }}>
+                          <WiMoonrise className={`text-orange-700 ${isMobileSConstrainedView || isMobileMConstrainedView ? 'text-base' : 'text-xl'}`} />
                         </div>
-                        <span className="ml-3 font-medium">Isha</span>
+                        <span className={`ml-1 font-medium ${isMobileSConstrainedView ? 'text-xs' : isMobileMConstrainedView ? 'text-xs' : ''}`}>Isha</span>
                       </div>
                     </div>
                   </td>
-                  <td className="py-2 px-2 text-center text-orange-900 font-bold border-r border-gray-200">{formatTime(prayerData.timings.Isha)}</td>
-                  <td className="py-2 px-2 text-center text-orange-900 font-bold">{getIqamahTime('Isha', formatTime(prayerData.timings.Isha))}</td>
+                  <td className={`text-center text-orange-900 font-bold border-r border-gray-200 ${isMobileSConstrainedView || isMobileMConstrainedView ? 'py-1 px-1' : 'py-2 px-2'}`}><span className={`${isMobileSConstrainedView || isMobileMConstrainedView ? 'text-xs' : 'text-sm'} lg:text-base xl:text-lg whitespace-nowrap`}>{formatTime(prayerData.timings.Isha)}</span></td>
+                  <td className={`text-center text-orange-900 font-bold ${isMobileSConstrainedView || isMobileMConstrainedView ? 'py-1 px-1' : 'py-2 px-2'}`}><span className={`${isMobileSConstrainedView || isMobileMConstrainedView ? 'text-xs' : 'text-sm'} lg:text-base xl:text-lg whitespace-nowrap`}>{getIqamahTime('Isha', formatTime(prayerData.timings.Isha))}</span></td>
                 </tr>
                 <tr className="even:bg-orange-50 odd:bg-white">
-                  <td className="py-1 px-2 text-orange-900 border-r border-gray-200">
+                  <td className={`border-r border-gray-200 text-orange-900 ${isMobileSConstrainedView ? 'py-1 px-1' : isMobileMConstrainedView ? 'py-1 px-1' : 'py-2 px-2'}`}> 
                     <div className="flex justify-center">
-                      <div className="w-32 flex">
-                        <div className="w-8 flex justify-end">
-                          <FaPeopleRoof className="text-orange-700" />
+                      <div className={`${isMobileSConstrainedView ? 'w-20' : 'w-32'} flex items-center`}>
+                        <div className="flex justify-end" style={{ width: isMobileSConstrainedView ? 16 : isMobileMConstrainedView ? 20 : 32 }}>
+                          <FaPeopleRoof className={`text-orange-700 ${isMobileSConstrainedView || isMobileMConstrainedView ? 'text-base' : ''}`} />
                         </div>
-                        <span className="ml-3 font-medium">Jumu'ah 1</span>
+                        <span className={`font-medium ${isMobileSConstrainedView ? 'text-xs whitespace-nowrap ml-0' : isMobileMConstrainedView ? 'text-xs ml-1' : 'ml-1'}`}>Jumu'ah 1</span>
                       </div>
                     </div>
                   </td>
-                  <td className="py-1 px-2 text-center text-orange-900 font-bold border-r border-gray-200">1:15 PM</td>
-                  <td className="py-1 px-2 text-center text-orange-900 font-bold">1:30 PM</td>
+                  <td className={`text-center text-orange-900 font-bold border-r border-gray-200 ${isMobileSConstrainedView || isMobileMConstrainedView ? 'py-0.5 px-1' : 'py-1 px-2'}`}><span className={`${isMobileSConstrainedView || isMobileMConstrainedView ? 'text-xs' : 'text-sm'} lg:text-base xl:text-lg whitespace-nowrap`}>1:15 PM</span></td>
+                  <td className={`text-center text-orange-900 font-bold ${isMobileSConstrainedView || isMobileMConstrainedView ? 'py-0.5 px-1' : 'py-1 px-2'}`}><span className={`${isMobileSConstrainedView || isMobileMConstrainedView ? 'text-xs' : 'text-sm'} lg:text-base xl:text-lg whitespace-nowrap`}>1:30 PM</span></td>
                 </tr>
                 <tr className="even:bg-orange-50 odd:bg-white">
-                  <td className="py-1 px-2 text-orange-900 border-r border-gray-200">
+                  <td className={`border-r border-gray-200 text-orange-900 ${isMobileSConstrainedView ? 'py-1 px-1' : isMobileMConstrainedView ? 'py-1 px-1' : 'py-2 px-2'}`}> 
                     <div className="flex justify-center">
-                      <div className="w-32 flex">
-                        <div className="w-8 flex justify-end">
-                          <FaPeopleRoof className="text-orange-700" />
+                      <div className={`${isMobileSConstrainedView ? 'w-20' : 'w-32'} flex items-center`}>
+                        <div className="flex justify-end" style={{ width: isMobileSConstrainedView ? 16 : isMobileMConstrainedView ? 20 : 32 }}>
+                          <FaPeopleRoof className={`text-orange-700 ${isMobileSConstrainedView || isMobileMConstrainedView ? 'text-base' : ''}`} />
                         </div>
-                        <span className="ml-3 font-medium">Jumu'ah 2</span>
+                        <span className={`font-medium ${isMobileSConstrainedView ? 'text-xs whitespace-nowrap ml-0' : isMobileMConstrainedView ? 'text-xs ml-1' : 'ml-1'}`}>Jumu'ah 2</span>
                       </div>
                     </div>
                   </td>
-                  <td className="py-1 px-2 text-center text-orange-900 font-bold border-r border-gray-200">1:15 PM</td>
-                  <td className="py-1 px-2 text-center text-orange-900 font-bold">2:30 PM</td>
+                  <td className={`text-center text-orange-900 font-bold border-r border-gray-200 ${isMobileSConstrainedView || isMobileMConstrainedView ? 'py-0.5 px-1' : 'py-1 px-2'}`}><span className={`${isMobileSConstrainedView || isMobileMConstrainedView ? 'text-xs' : 'text-sm'} lg:text-base xl:text-lg whitespace-nowrap`}>1:15 PM</span></td>
+                  <td className={`text-center text-orange-900 font-bold ${isMobileSConstrainedView || isMobileMConstrainedView ? 'py-0.5 px-1' : 'py-1 px-2'}`}><span className={`${isMobileSConstrainedView || isMobileMConstrainedView ? 'text-xs' : 'text-sm'} lg:text-base xl:text-lg whitespace-nowrap`}>2:30 PM</span></td>
                 </tr>
               </tbody>
             </table>
           </div>
           
-          <div className="p-2 text-center text-sm text-gray-600 bg-gray-50 border-t border-gray-800">
-            <p>Iqamah times shown here are approximate.</p>
+          <div className="p-2 text-center text-gray-600 bg-gray-50 border-t border-gray-800">
+            <p className={
+              isMobileSConstrainedView || isMobileMConstrainedView
+                ? 'text-[10px]'
+                : isMobileLConstrainedView
+                  ? 'text-xs'
+                  : 'text-sm'
+            }>Iqamah times shown here are approximate.</p>
           </div>
         </>
       )}
