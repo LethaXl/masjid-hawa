@@ -19,10 +19,16 @@ export default function Home() {
       {/* Unified Hero + Prayer Times Section */}
       <section id="home" className={`relative flex items-center justify-center bg-gradient-to-b from-orange-300 via-orange-200 to-orange-100 text-orange-900 w-full border-b border-orange-200 scroll-mt-18 ${
         !(isMobileSConstrainedView || isMobileMConstrainedView || isMobileLConstrainedView || isMobileXLConstrainedView) ? 'py-4' : 'min-h-screen'
+      } ${
+        (isMobileSConstrainedView || isMobileMConstrainedView || isMobileLConstrainedView || isMobileXLConstrainedView) ? 'mt-[-40px] pt-2' : ''
       }`}>
         <div className={`relative z-10 container mx-auto px-4 flex flex-col items-center ${!(isMobileSConstrainedView || isMobileMConstrainedView || isMobileLConstrainedView || isMobileXLConstrainedView) ? 'py-2' : ''}`}>
           {/* Mosque Icon */}
-          <div className={`flex justify-center ${!(isMobileSConstrainedView || isMobileMConstrainedView || isMobileLConstrainedView || isMobileXLConstrainedView) ? 'mb-0' : 'mb-1'}`}>
+          <div className={`flex justify-center ${
+            !(isMobileSConstrainedView || isMobileMConstrainedView || isMobileLConstrainedView || isMobileXLConstrainedView) ? 'mb-0' : 'mb-1'
+          } ${
+            isMobileXLConstrainedView ? 'mt-12' : isMobileLConstrainedView ? 'mt-10' : (isMobileMConstrainedView || isMobileSConstrainedView) ? 'mt-8' : ''
+          }`}>
             <Image 
               src="/images/favicon1.png" 
               alt="Masjid Hawa Logo" 
@@ -34,7 +40,7 @@ export default function Home() {
           </div>
           <h1 className={`font-extrabold text-center mt-0 mb-1 tracking-tight text-orange-700 ${
             !(isMobileSConstrainedView || isMobileMConstrainedView || isMobileLConstrainedView || isMobileXLConstrainedView) ? 'text-3xl' :
-            isMobileMConstrainedView ? 'text-4xl' :
+            isMobileMConstrainedView ? 'text-3xl' :
             isMobileSConstrainedView ? 'text-3xl' : 
             isMobileLConstrainedView ? 'text-3xl' : 
             isMobileXLConstrainedView ? 'text-3xl' : 
@@ -45,7 +51,7 @@ export default function Home() {
           <p className={`text-center mb-2 max-w-lg text-orange-700 font-medium ${
             !(isMobileSConstrainedView || isMobileMConstrainedView || isMobileLConstrainedView || isMobileXLConstrainedView) ? 'text-sm' :
             isMobileSConstrainedView ? 'text-xs' : 
-            isMobileMConstrainedView ? 'text-base' : 
+            isMobileMConstrainedView ? 'text-sm' : 
             isMobileLConstrainedView ? 'text-sm' : 
             isMobileXLConstrainedView ? 'text-sm' : 
             'text-base'

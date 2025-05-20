@@ -111,7 +111,7 @@ const Header = () => {
 
         <div className="relative flex items-center">
           <button
-            className="md:hidden z-50 relative"
+            className="md:hidden z-50 relative text-white"
             aria-label={isMobileTabsOpen ? 'Close menu' : 'Open menu'}
             onClick={() => setIsMobileTabsOpen(!isMobileTabsOpen)}
           >
