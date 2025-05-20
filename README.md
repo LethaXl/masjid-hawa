@@ -3,7 +3,7 @@
 A responsive website built to improve the online presence of **Masjid Hawa**, a newly established mosque in Scarborough. Designed to provide accurate prayer times, community updates, and easy access to donation options for local visitors.
 
 <p align="center">
-  <img src="images/home.png" alt="Masjid Hawa Home Screenshot" width="400" />
+  <img src="public/home.png" alt="Masjid Hawa Home Screenshot" width="400" />
 </p>
 
 ## 🛠️ Tech Stack
