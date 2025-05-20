@@ -5,6 +5,16 @@ import { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
 import { useScreenSize } from '@/hooks/useScreenSize';
 
+// Move these outside the Header component
+const sectionIds = ['home', 'about', 'donate', 'location', 'contact'];
+const navLinks = [
+  { id: "home", label: "Home" },
+  { id: "about", label: "About" },
+  { id: "donate", label: "Donate" },
+  { id: "location", label: "Location" },
+  { id: "contact", label: "Contact" },
+];
+
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
@@ -12,7 +22,6 @@ const Header = () => {
   const [isMobileTabsOpen, setIsMobileTabsOpen] = useState(false);
   const [showMobileTabs, setShowMobileTabs] = useState(false);
   const [tabVis, setTabVis] = useState([false, false, false, false, false]);
-  const sectionIds = ['home', 'about', 'donate', 'location', 'contact'];
   const headerRef = useRef<HTMLDivElement>(null);
   const { 
     isMobileSConstrainedView, 
@@ -20,14 +29,6 @@ const Header = () => {
     isMobileLConstrainedView, 
     isMobileXLConstrainedView 
   } = useScreenSize();
-
-  const navLinks = [
-    { id: "home", label: "Home" },
-    { id: "about", label: "About" },
-    { id: "donate", label: "Donate" },
-    { id: "location", label: "Location" },
-    { id: "contact", label: "Contact" },
-  ];
 
   useEffect(() => {
     const handleScroll = () => {
@@ -49,7 +50,7 @@ const Header = () => {
     // Run on mount
     handleScroll();
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, []); // sectionIds is now a constant
 
   useEffect(() => {
     if (isMobileTabsOpen) {
@@ -64,7 +65,7 @@ const Header = () => {
       const timeout = setTimeout(() => setShowMobileTabs(false), 400);
       return () => clearTimeout(timeout);
     }
-  }, [isMobileTabsOpen]);
+  }, [isMobileTabsOpen]); // navLinks is now a constant
 
   const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
     e.preventDefault();

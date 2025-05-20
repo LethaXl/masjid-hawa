@@ -40,10 +40,11 @@ class ErrorBoundary extends Component<Props, State> {
             >
               Refresh Page
             </button>
-            <div className="mt-6 text-sm text-gray-500">
-              <p>Error details:</p>
-              <p className="mt-2 font-mono text-xs break-all">
-                {this.state.error?.message}
+            <div className="mt-6 text-sm text-gray-700">
+              <p>If the problem continues, please contact us:</p>
+              <p className="mt-2">
+                <span className="font-semibold">Phone:</span> <a href="tel:+16477793313" className="text-orange-700 hover:underline">+1 (647) 779-3313</a><br />
+                <span className="font-semibold">Email:</span> <a href="mailto:masjidhawa786@gmail.com" className="text-orange-700 hover:underline">masjidhawa786@gmail.com</a>
               </p>
             </div>
           </div>

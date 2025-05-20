@@ -3,16 +3,10 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { 
-  FaSun, 
-  FaMoon, 
-  FaRegSun, 
-  FaCloudSun, 
-  FaMosque, 
-  FaRegMoon,
-  FaStar 
-} from 'react-icons/fa';
+  WiMoonset, 
+  WiMoonrise 
+} from 'react-icons/wi';
 import { FiSunrise, FiSunset } from 'react-icons/fi';
-import { WiMoonset, WiMoonrise } from 'react-icons/wi';
 import { FaPeopleRoof } from 'react-icons/fa6';
 import { MdOutlineWbSunny } from 'react-icons/md';
 import { CiCloudSun } from 'react-icons/ci';

@@ -15,13 +15,13 @@ const Quote: React.FC<QuoteProps> = ({ text, author, className = '' }) => {
     >
       {isMobileSConstrainedView ? (
         <>
-          <div className="absolute top-1 left-1 text-3xl text-orange-200 opacity-70 font-accent">"</div>
-          <div className="absolute bottom-1 right-1 text-3xl text-orange-200 opacity-70 font-accent">"</div>
+          <div className="absolute top-1 left-1 text-3xl text-orange-200 opacity-70 font-accent">&ldquo;</div>
+          <div className="absolute bottom-1 right-1 text-3xl text-orange-200 opacity-70 font-accent">&rdquo;</div>
         </>
       ) : (
         <>
-          <div className="absolute top-6 left-6 text-5xl text-orange-200 opacity-70 font-accent">"</div>
-          <div className="absolute bottom-20 right-6 text-5xl text-orange-200 opacity-70 font-accent">"</div>
+          <div className="absolute top-6 left-6 text-5xl text-orange-200 opacity-70 font-accent">&ldquo;</div>
+          <div className="absolute bottom-20 right-6 text-5xl text-orange-200 opacity-70 font-accent">&rdquo;</div>
         </>
       )}
       <blockquote className="text-center text-gray-700 relative z-10 px-2 sm:px-6 font-accent italic text-s sm:text-sm md:text-lg">
