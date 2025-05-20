@@ -328,7 +328,7 @@ export default function Home() {
               Contact Us
             </h2>
             <p className={`text-center text-gray-700 max-w-2xl mx-auto mb-10 ${isMobileXLConstrainedView || isMobileLConstrainedView || isMobileMConstrainedView || isMobileSConstrainedView ? 'text-xs' : ''}`}>
-              If you have any questions or would like to get involved with our community, please don't hesitate to reach out.
+              If you have any questions or would like to get involved with our community, please don&apos;t hesitate to reach out.
             </p>
 
             <div className="max-w-3xl mx-auto">
